@@ -11,28 +11,58 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url('./wood.jpg');
+  opacity: 0.95;
 }
 
 .flashcard {
-  background-image: url('./flashcard.svg');
   height: 420px;
   width: 725px;
-  text-align: center;
-  box-shadow: 6px 3px 5px #a0a0a0; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.flashcard input[type="text"] {
+svg.flip {
+  height: 100px;
+}
+
+svg.flip:hover {
+  cursor: pointer;
+}
+
+.inner.flipped textarea {
+  color: rgb(138, 0, 0);
+}
+
+.inner {
+  --rotationDeg: 0;
+  background-image: url('./flashcard.svg');
+  text-align: center;
+  box-shadow: 6px 3px 5px #282828; 
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: rotateY(0) rotate(var(--rotationDeg));
+  transition: 0.3s;
+}
+
+.inner.flipped {
+  background-image: linear-gradient(rgba(225, 225, 225, 0.1), rgba(225, 225, 225, 0.1)), url('./flashcard.svg');
+  transform: rotateY(180deg) rotate(var(--rotationDeg));
+  transition: 0.3s;
+  box-shadow: -6px 3px 5px #282828; 
+}
+
+.flashcard textarea {
+  line-height: 420px;
   font-family: 'Patrick Hand';
-  font-size: 2.5em;
+  color: #01118f;
+  font-size: 3.5em;
   background-color: transparent;
   border: none;
   text-align: center;
   width: 100%;
 }
 
-.flashcard input[type="text"]:focus {
+.flashcard textarea:focus {
   outline: none;
 }
