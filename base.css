@@ -4,6 +4,7 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -18,6 +19,8 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
 .flashcard {
   height: 420px;
   width: 725px;
+  text-align: center;
+  perspective: 1000px;
 }
 
 svg.flip {
@@ -28,9 +31,6 @@ svg.flip:hover {
   cursor: pointer;
 }
 
-.inner.flipped textarea {
-  color: rgb(138, 0, 0);
-}
 
 .inner {
   --rotationDeg: 0;
@@ -40,22 +40,45 @@ svg.flip:hover {
   height: 100%;
   width: 100%;
   display: flex;
+  position: relative;
   justify-content: center;
-  transform: rotateY(0) rotate(var(--rotationDeg));
-  transition: 0.3s;
+  transform: rotate(var(--rotationDeg));
+  transition: 0.2s;
+  transform-style: preserve-3d;
 }
 
 .inner.flipped {
   background-image: linear-gradient(rgba(225, 225, 225, 0.1), rgba(225, 225, 225, 0.1)), url('./flashcard.svg');
   transform: rotateY(180deg) rotate(var(--rotationDeg));
-  transition: 0.3s;
+
   box-shadow: -6px 3px 5px #282828; 
 }
 
-.flashcard textarea {
+.front, 
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(0);
+}
+
+.front [type="text"] {
+  color: #01118f;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.back [type="text"] {
+  color: rgb(138, 0, 0);
+}
+
+.flashcard [type="text"] {
   line-height: 420px;
   font-family: 'Patrick Hand', cursive;
-  color: #01118f;
   font-size: 3.5em;
   background-color: transparent;
   border: none;
@@ -63,6 +86,10 @@ svg.flip:hover {
   width: 100%;
 }
 
-.flashcard textarea:focus {
-  outline: none;
+.flip-button {
+  padding: 5px 15px;
+  margin-top: 30px;
+  border-radius: 5px;
+  font-size: 2em;
+  background-color: #15c628;
 }

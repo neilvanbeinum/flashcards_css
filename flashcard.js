@@ -1,25 +1,13 @@
-const flipButton = document.querySelector('.flip');
-const cardText = document.querySelector('.card-text');
+const flipButton = document.querySelector('.flip-button');
 const card = document.querySelector('.inner');
 
 function randomBetween(lower, upper) {
   return Math.random() * (upper - lower) + lower;
 }
 
-function flipCard(e) {
-  const { flipSideText } = card.dataset;
-
+function flipCard() {
   card.classList.toggle('flipped');
-
   card.setAttribute('style', `--rotationDeg: ${randomBetween(-1, 1)}deg`);
-
-  card.removeChild(cardText);
-
-  card.dataset.flipSideText = cardText.value;
-
-  cardText.value = flipSideText;
-
-  card.appendChild(cardText);
 }
 
 flipButton.addEventListener('click', flipCard);
