@@ -36,6 +36,12 @@ body {
   transform-style: preserve-3d;
 }
 
+@media (prefers-reduced-motion) {
+  .inner {
+    transition: none;
+  }
+}
+
 .inner.flipped {
   background-image: linear-gradient(rgba(225, 225, 225, 0.1), rgba(225, 225, 225, 0.1)), url('./flashcard.svg');
   transform: rotateY(180deg) rotate(var(--rotationDeg));
